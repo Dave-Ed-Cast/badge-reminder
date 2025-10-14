@@ -39,5 +39,5 @@ self.addEventListener('message', event => {
 // Handle notification clicks
 self.addEventListener('notificationclick', event => {
   event.notification.close();
-  event.waitUntil(clients.openWindow('./badge-reminder.html'));
+  event.waitUntil(clients.openWindow('./index.html'));
 });
