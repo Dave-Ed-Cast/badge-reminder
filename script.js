@@ -1,6 +1,5 @@
 const btn = document.getElementById('badgeBtn');
 const log = document.getElementById('log');
-const delaySelect = document.getElementById('delaySelect');
 
 // request notification permission on load
 if (Notification.permission !== "granted") {
@@ -12,26 +11,26 @@ btn.onclick = async () => {
         await Notification.requestPermission();
     }
 
-    const delayMinutes = parseInt(delaySelect.value, 10);
     const now = new Date();
-    const next = new Date(now.getTime() + delayMinutes * 60000);
+    const next = new Date(now.getTime() + 5000); // 5 seconds from now
 
     log.innerHTML = `
       ✅ Badge out recorded at <b>${now.toLocaleTimeString()}</b><br>
-      🔔 Reminder set for <b>${next.toLocaleTimeString()}</b>
+      🔔 Test reminder set for <b>${next.toLocaleTimeString()}</b>
     `;
 
-    // Save to local log
-    const entries = JSON.parse(localStorage.getItem('badgeLog') || "[]");
-    entries.push({ out: now.toISOString(), remind: next.toISOString() });
-    localStorage.setItem('badgeLog', JSON.stringify(entries));
+    // Play a sound function
+    const playSound = () => {
+        const audio = new Audio('https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg');
+        audio.play();
+    };
 
-    // Schedule reminder
-    // Trigger notification after 5 seconds for testing
-        setTimeout(() => {
-            new Notification("Time to badge in!", {
-                body: `You badged out at ${now.toLocaleTimeString()}`,
-                icon: "https://img.icons8.com/color/96/alarm-clock.png"
-            });
-        }, 5000);
+    // Schedule notification and sound after 5 seconds
+    setTimeout(() => {
+        new Notification("Time to badge in!", {
+            body: `You badged out at ${now.toLocaleTimeString()}`,
+            icon: "https://img.icons8.com/color/96/alarm-clock.png"
+        });
+        playSound();
+    }, 2000);
 };
