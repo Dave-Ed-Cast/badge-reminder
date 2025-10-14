@@ -6,6 +6,7 @@ self.addEventListener('install', event => {
         './badge-reminder.html',
         './badge-reminder.js',
         './manifest.json',
+        './styles.css',
         'https://img.icons8.com/color/96/alarm-clock.png'
       ])
     )
