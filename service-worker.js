@@ -18,7 +18,6 @@ self.addEventListener('activate', () => {
   console.log('Service Worker activated');
 });
 
-// Listen for messages from main script
 self.addEventListener('message', event => {
   const data = event.data;
   if (data.type === "scheduleReminder") {

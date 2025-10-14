@@ -27,7 +27,7 @@ btn.onclick = async () => {
     entries.push({ out: now.toISOString(), remind: next.toISOString() });
     localStorage.setItem('badgeLog', JSON.stringify(entries));
 
-    if (Notification.permission === "granted") {
+    if (Notification.permission !== "granted") {
         new Notification("Badge Out!", {
             body: `You badged out at ${now.toLocaleTimeString()}`,
             icon: "https://img.icons8.com/color/96/alarm-clock.png"
