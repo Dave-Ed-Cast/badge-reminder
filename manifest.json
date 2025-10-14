@@ -1,7 +1,7 @@
 {
   "name": "Badge Reminder",
   "short_name": "Badge",
-  "start_url": "./badge-reminder.html",
+  "start_url": "https://dave-ed-cast.github.io/badge-reminder/index.html",
   "display": "standalone",
   "background_color": "#f5f5f7",
   "theme_color": "#007aff",
