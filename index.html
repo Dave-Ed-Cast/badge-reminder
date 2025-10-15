@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sender PWA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Email Sender PWA</h1>
+        <button id="sendBtn">Send Email</button>
+        <p id="status"></p>
+
+        <select id="emailProvider">
+            <option value="gmail">Gmail</option>
+            <option value="outlook">Outlook</option>
+            <option value="yahoo">Yahoo</option>
+            <option value="custom">Custom SMTP</option>
+        </select>
+
+        <input id="senderEmail" placeholder="Your Email">
+        <input id="senderPassword" placeholder="Your Password" type="password">
+
+        <!-- Only show for custom -->
+        <input id="smtpServer" placeholder="SMTP Server">
+        <input id="smtpPort" placeholder="SMTP Port">
+
+        <input id="recipientEmail" placeholder="Recipient Email">
+        <input id="subject" placeholder="Subject">
+        <textarea id="body" placeholder="Email body"></textarea>
+
+        <button id="sendBtn">Send Email</button>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
