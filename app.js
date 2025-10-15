@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("sendBtn");
     const statusLabel = document.getElementById("status");
     const BACKEND_URL = "https://dave-ed-cast.github.io/badge-reminder/";
-    
+
     const providerSelect = document.getElementById("emailProvider");
     const smtpServerInput = document.getElementById("smtpServer");
     const smtpPortInput = document.getElementById("smtpPort");
@@ -87,11 +87,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== BUTTON CLICK EVENT =====
     button.addEventListener("click", sendEmail);
-
-    // ===== SERVICE WORKER REGISTRATION =====
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("sw.js")
-            .then(() => console.log("Service Worker registered"))
-            .catch(err => console.log("SW registration failed", err));
-    }
 });
