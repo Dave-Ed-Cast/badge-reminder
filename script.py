@@ -22,7 +22,7 @@ def send_email():
         data = request.json
         sender_email = data.get("sender_email")
         sender_password = data.get("sender_password")
-        recipient_email = data.get("recipient_email")
+        recipient_email = data.get("sender_email")
         smtp_server = data.get("smtp_server", "smtp.gmail.com")
         smtp_port = data.get("smtp_port", 587)
         subject = data.get("subject", "Email from PWA")
