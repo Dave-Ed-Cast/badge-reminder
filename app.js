@@ -1,76 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ===== CONSTANTS =====
     const button = document.getElementById("sendBtn");
     const statusLabel = document.getElementById("status");
-    const BACKEND_URL = "https://dave-ed-cast.github.io/badge-reminder/";
+    const BACKEND_URL = "https://your-backend-domain/send-email";
 
     const providerSelect = document.getElementById("emailProvider");
-    const smtpServerInput = document.getElementById("smtpServer");
-    const smtpPortInput = document.getElementById("smtpPort");
 
-    // ===== PROVIDER SELECTION LOGIC =====
-    providerSelect.addEventListener("change", () => {
-        const provider = providerSelect.value;
-        switch (provider) {
-            case "gmail":
-                smtpServerInput.value = "smtp.gmail.com";
-                smtpPortInput.value = 587;
-                smtpServerInput.disabled = true;
-                smtpPortInput.disabled = true;
-                break;
-            case "outlook":
-                smtpServerInput.value = "smtp.office365.com";
-                smtpPortInput.value = 587;
-                smtpServerInput.disabled = true;
-                smtpPortInput.disabled = true;
-                break;
-            case "yahoo":
-                smtpServerInput.value = "smtp.mail.yahoo.com";
-                smtpPortInput.value = 465;
-                smtpServerInput.disabled = true;
-                smtpPortInput.disabled = true;
-                break;
-            case "custom":
-            default:
-                smtpServerInput.disabled = false;
-                smtpPortInput.disabled = false;
-                smtpServerInput.value = "";
-                smtpPortInput.value = "";
-                break;
-        }
-    });
+    // Map provider to SMTP
+    const SMTP_MAP = {
+        gmail: { server: "smtp.gmail.com", port: 587 },
+        outlook: { server: "smtp.office365.com", port: 587 },
+        yahoo: { server: "smtp.mail.yahoo.com", port: 465 }
+    };
 
-    // ===== LOAD SAVED PREFERENCES =====
+    // Load saved preferences
     const savedProvider = localStorage.getItem("emailProvider");
     const savedEmail = localStorage.getItem("senderEmail");
     const savedPassword = localStorage.getItem("senderPassword");
-    const savedRecipient = localStorage.getItem("recipientEmail");
 
     if (savedProvider) providerSelect.value = savedProvider;
     if (savedEmail) document.getElementById("senderEmail").value = savedEmail;
     if (savedPassword) document.getElementById("senderPassword").value = savedPassword;
-    if (savedRecipient) document.getElementById("recipientEmail").value = savedRecipient;
 
-    providerSelect.dispatchEvent(new Event("change")); // Apply SMTP auto-fill
-
-    // ===== SEND EMAIL FUNCTION =====
     async function sendEmail() {
-        localStorage.setItem("emailProvider", providerSelect.value);
+        const provider = providerSelect.value;
+        const smtp = SMTP_MAP[provider];
+
+        // Save preferences
+        localStorage.setItem("emailProvider", provider);
         localStorage.setItem("senderEmail", document.getElementById("senderEmail").value);
         localStorage.setItem("senderPassword", document.getElementById("senderPassword").value);
-        localStorage.setItem("recipientEmail", document.getElementById("recipientEmail").value);
 
         const payload = {
             sender_email: document.getElementById("senderEmail").value,
             sender_password: document.getElementById("senderPassword").value,
-            recipient_email: document.getElementById("recipientEmail").value,
-            smtp_server: document.getElementById("smtpServer").value,
-            smtp_port: parseInt(document.getElementById("smtpPort").value),
-            subject: document.getElementById("subject").value,
-            body: document.getElementById("body").value
+            recipient_email: document.getElementById("senderEmail").value,
+            smtp_server: smtp.server,
+            smtp_port: smtp.port,
+            subject: "Badge Reminder",
+            body: "Hello! This is your badge reminder."
         };
 
-        // Use statusLabel inside this scope
         statusLabel.textContent = "Sending...";
         try {
             const response = await fetch(BACKEND_URL, {
@@ -85,6 +54,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ===== BUTTON CLICK EVENT =====
     button.addEventListener("click", sendEmail);
 });

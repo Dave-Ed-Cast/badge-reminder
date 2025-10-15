@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Sender PWA</title>
+    <title>Badging Reminder</title>
     <link rel="stylesheet" href="style.css?v=<?=time()?">
 </head>
 
@@ -18,12 +18,11 @@
                 <option value="gmail">Gmail</option>
                 <option value="outlook">Outlook</option>
                 <option value="yahoo">Yahoo</option>
-                <option value="custom">Custom SMTP</option>
             </select>
         </div>
 
         <div class="form-group">
-            <input id="senderEmail" placeholder="Your Email">
+            <input id="senderEmail" placeholder="Your Email" type="email">
             <input id="senderPassword" placeholder="Your Password" type="password">
         </div>
 
