@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("sendBtn");
     const statusLabel = document.getElementById("status");
-    const BACKEND_URL = "https://your-backend-domain/send-email";
+    const BACKEND_URL = "https://dave-ed-cast.github.io/badge-reminder/";
 
     async function sendEmail() {
         const email = document.getElementById("senderEmail").value;
