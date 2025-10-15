@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("sendBtn");
     const statusLabel = document.getElementById("status");
     const BACKEND_URL = "https://dave-ed-cast.github.io/badge-reminder/";
-
+    
     const providerSelect = document.getElementById("emailProvider");
     const smtpServerInput = document.getElementById("smtpServer");
     const smtpPortInput = document.getElementById("smtpPort");
@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: document.getElementById("body").value
         };
 
+        // Use statusLabel inside this scope
         statusLabel.textContent = "Sending...";
         try {
             const response = await fetch(BACKEND_URL, {
