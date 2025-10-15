@@ -1,6 +1,6 @@
 // ===== CONSTANTS =====
 const button = document.getElementById("sendBtn");
-const status = document.getElementById("status");
+const statusLabel = document.getElementById("status");
 const BACKEND_URL = "https://dave-ed-cast.github.io/badge-reminder/";
 
 const providerSelect = document.getElementById("emailProvider");
