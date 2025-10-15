@@ -1,7 +1,7 @@
 {
     "name": "Email Sender PWA",
     "short_name": "EmailPWA",
-    "start_url": "/",
+    "start_url": "https://dave-ed-cast.github.io/badge-reminder/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#4CAF50",
